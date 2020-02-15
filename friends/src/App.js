@@ -19,9 +19,9 @@ function App() {
           </li>
         </ul>
         <Switch>          
-          <ProtectedRoute exact path='friendslist' component={FriendsList} />
+          <ProtectedRoute exact path='/friendslist' component={FriendsList} />
           <Route path='/login' component={Login} />
-          {/* <Route component={Login} /> */}
+          <Route component={Login} />
         </Switch>
       </div>
     </Router>
