@@ -1,6 +1,5 @@
 import React from 'react';
 import { axiosWithAuth } from '../utils/axiosWithAuth';
-import axios from 'axios';
 
 class FriendsList extends React.Component {
     state = {
@@ -40,7 +39,8 @@ class FriendsList extends React.Component {
 
     handleSubmit = e => {
         e.preventDefault();
-        axios.post('http://localhost:5000/api/friends', this.state.newFriend)
+        axiosWithAuth()
+        .post('/friends', this.state.newFriend)
         .then(res => {
             console.log(res);
         })
@@ -51,9 +51,13 @@ class FriendsList extends React.Component {
         return (
             <div>
                 <div>
-                    {this.state.friendsList.map(friend => {
-                    return <h1>{friend.name}</h1>
-                    })}
+                    {this.state.friendsList.map(friend => (
+                        <div key={friend.id}>
+                            <h2>{friend.name}</h2>
+                            <h3>{friend.age}</h3>
+                            <h3>{friend.email}</h3>
+                        </div>
+                            ))}
                 </div>
                 <div>
                     <form onSubmit={this.handleSubmit}>
